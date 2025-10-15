@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WebLearn Academy — Main</title>
+  <style>
+    :root{ --accent:#7a3cff; --bg:#f5f6fb; --card:#fff; --muted:#667; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto; background:var(--bg); color:#111; min-height:100vh;}
+    header{background:linear-gradient(90deg,var(--accent),#a267ff); color:white;padding:22px 16px;text-align:center; font-weight:800; font-size:20px}
+    main{padding:16px; max-width:980px;margin:0 auto;}
+    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:12px}
+    @media(min-width:760px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 8px 20px rgba(16,16,32,0.06); cursor:pointer; display:flex;flex-direction:column;gap:10px; text-decoration:none;color:inherit}
+    .card .title{font-weight:800;font-size:18px}
+    .card .desc{color:var(--muted);font-size:14px}
+    .footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>WebLearn Academy — Learn HTML • CSS • JavaScript</header>
+
+  <main>
+    <p style="margin:12px 0;color:var(--muted)">Click one of the course tiles below to open a full, topic-by-topic course. Each course contains many subtopics, examples, and runnable snippets.</p>
+
+    <div class="grid">
+      <a class="card" href="./html-course.html">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#fff,#f6f1ff);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent)">HTML</div>
+          <div>
+            <div class="title">HTML — Full Course</div>
+            <div class="desc">All tags, attributes, forms, semantic HTML, media, accessibility, templates, SVG, and more.</div>
+          </div>
+        </div>
+        <div class="small">Beginner → Advanced • Click to open course</div>
+      </a>
+
+      <a class="card" href="./css-course.html">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#fff,#f8f4ff);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent)">CSS</div>
+          <div>
+            <div class="title">CSS — Full Course</div>
+            <div class="desc">Selectors, box-model, layout (Flexbox & Grid), responsive design, animations, variables, and best practices.</div>
+          </div>
+        </div>
+        <div class="small">Beginner → Advanced • Click to open course</div>
+      </a>
+
+      <a class="card" href="./js-course.html">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#fff,#fef7ff);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent)">JS</div>
+          <div>
+            <div class="title">JavaScript — Full Course</div>
+            <div class="desc">Language fundamentals, DOM, events, async, modules, browser APIs, patterns, and advanced topics.</div>
+          </div>
+        </div>
+        <div class="small">Beginner → Advanced • Click to open course</div>
+      </a>
+    </div>
+
+    <div class="footer"><strong></strong>.</div>
+  </main>
+</body>
+</html>
