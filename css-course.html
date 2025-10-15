@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebLearn Academy - CSS Full Course</title>
+  <style>
+    :root {
+      --purple: #7a3cff;
+      --bg: #f9f9f9;
+      --text: #222;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      text-align: center;
+      padding: 1.3rem;
+      background: var(--purple);
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Back to Main button near header */
+    .main-back-btn {
+      position: absolute;
+      left: 10px;
+      background: white;
+      color: var(--purple);
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .main-back-btn:hover {
+      background: #f1e6ff;
+    }
+
+    .section-title {
+      margin: 1.3rem 1rem 1rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .lesson-grid {
+      display: grid;
+      gap: 1rem;
+      padding: 0 1rem 2rem;
+    }
+
+    .lesson-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .lesson-card:hover {
+      transform: scale(1.02);
+    }
+
+    .lesson-card h3 {
+      font-size: 1rem;
+      color: var(--purple);
+    }
+
+    .lesson-card p {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* Detail view */
+    .lesson-detail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .lesson-detail header {
+      background: var(--purple);
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    .lesson-detail header button {
+      background: white;
+      border: none;
+      color: var(--purple);
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 0.3rem 0.7rem;
+      transition: 0.3s;
+    }
+
+    .lesson-detail header button:hover {
+      background: #f1e6ff;
+    }
+
+    .lesson-content {
+      padding: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .lesson-content h2 {
+      color: var(--purple);
+      margin-bottom: 0.5rem;
+    }
+
+    pre {
+      background: #222;
+      color: #0f0;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button class="main-back-btn" onclick="window.location.href='index.html'">← </button>
+    🎨 CSS Full Course
+  </header>
+
+  <div class="section-title">All CSS Lessons</div>
+  <div class="lesson-grid" id="lessonGrid"></div>
+
+  <div class="lesson-detail" id="lessonDetail">
+    <header>
+      <button id="backBtn">← Back</button>
+      <span id="lessonTitle"></span>
+    </header>
+    <div class="lesson-content" id="lessonContent"></div>
+  </div>
+
+  <script>
+    const lessons = [
+      { title: "Introduction to CSS", content: `<h2>Introduction to CSS</h2><p>CSS (Cascading Style Sheets) is used to style and layout web pages.</p><pre>h1 { color: blue; font-size: 20px; }</pre>` },
+      { title: "CSS Syntax and Selectors", content: `<h2>CSS Syntax and Selectors</h2><p>CSS uses selectors to target HTML elements and apply styles.</p><pre>p { color: red; } #main { background: lightgray; } .highlight { color: orange; }</pre>` },
+      { title: "Colors & Backgrounds", content: `<h2>Colors & Backgrounds</h2><pre>p { color: green; background-color: yellow; }</pre>` },
+      { title: "Text Alignment & Decoration", content: `<h2>Text Alignment & Decoration</h2><pre>h1 { text-align: center; } p { text-transform: uppercase; }</pre>` },
+      { title: "Fonts and Font Properties", content: `<h2>Fonts</h2><pre>p { font-family: Arial; font-size: 18px; }</pre>` },
+      { title: "Padding & Margin", content: `<h2>Padding & Margin</h2><pre>div { margin: 20px; padding: 10px; }</pre>` },
+      { title: "Margin Left, Right, Top, Bottom", content: `<h2>Margin Sides</h2><pre>div { margin-top: 10px; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; }</pre>` },
+      { title: "Borders & Border Radius", content: `<h2>Borders & Border Radius</h2><pre>div { border: 2px solid black; border-radius: 10px; }</pre>` },
+      { title: "Box Model Explained", content: `<h2>Box Model</h2><img src="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model-standard-small.png" width="100%">` },
+      { title: "Display, Position & Float", content: `<h2>Display, Position & Float</h2><pre>div { display: inline-block; position: relative; }</pre>` },
+      { title: "Flexbox", content: `<h2>Flexbox</h2><pre>.container { display: flex; justify-content: space-between; }</pre>` },
+      { title: "Grid Layout", content: `<h2>CSS Grid</h2><pre>.container { display: grid; grid-template-columns: 1fr 1fr; }</pre>` },
+      { title: "Shadows & Gradients", content: `<h2>Shadows & Gradients</h2><pre>.box { box-shadow: 2px 2px 10px rgba(0,0,0,0.3); }</pre>` },
+      { title: "Transitions & Animations", content: `<h2>Transitions & Animations</h2><pre>div:hover { transform: scale(1.1); }</pre>` },
+      { title: "Pseudo-classes & Pseudo-elements", content: `<h2>Pseudo-classes</h2><pre>a:hover { color: red; }</pre>` },
+      { title: "Responsive Design & Media Queries", content: `<h2>Responsive Design</h2><pre>@media (max-width:600px){ h1 {font-size:18px;} }</pre>` },
+      { title: "CSS Variables", content: `<h2>CSS Variables</h2><pre>:root { --main: #3498db; } h1 { color: var(--main); }</pre>` },
+      { title: "Advanced Layouts & Z-Index", content: `<h2>Z-Index</h2><pre>.box1 { z-index:2; } .box2 { z-index:1; }</pre>` }
+    ];
+
+    const grid = document.getElementById("lessonGrid");
+    const detail = document.getElementById("lessonDetail");
+    const titleEl = document.getElementById("lessonTitle");
+    const contentEl = document.getElementById("lessonContent");
+    const backBtn = document.getElementById("backBtn");
+
+    lessons.forEach((lesson) => {
+      const div = document.createElement("div");
+      div.className = "lesson-card";
+      div.innerHTML = `<h3>${lesson.title}</h3><p>Learn about ${lesson.title}</p>`;
+      div.addEventListener("click", () => {
+        titleEl.textContent = lesson.title;
+        contentEl.innerHTML = lesson.content;
+        detail.style.display = "flex";
+        history.pushState({ openLesson: true }, "");
+      });
+      grid.appendChild(div);
+    });
+
+    backBtn.addEventListener("click", () => {
+      detail.style.display = "none";
+      history.back();
+    });
+
+    window.addEventListener("popstate", (e) => {
+      if (!e.state || !e.state.openLesson) {
+        detail.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
