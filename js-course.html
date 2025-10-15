@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WebLearn Academy — JavaScript Course</title>
+  <style>
+    :root{--accent:#7a3cff;--bg:#fbfbfd;--card:#fff;--muted:#556}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Roboto,'Segoe UI';background:var(--bg);padding-bottom:40px;color:#111}
+    header{background:var(--accent);color:white;padding:14px 12px;display:flex;align-items:center;gap:12px}
+    header button{background:transparent;border:0;color:white;font-size:18px;cursor:pointer}
+    header h1{font-size:16px;margin:0;font-weight:800}
+    main{padding:14px;max-width:1000px;margin:0 auto}
+    .topic{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 20px rgba(16,16,32,0.06);margin-bottom:12px}
+    .topic h2{margin:0 0 8px}
+    .muted{color:var(--muted);font-size:14px}
+    textarea.code{width:100%;min-height:160px;border-radius:8px;padding:12px;font-family:monospace;font-size:13px;border:1px solid rgba(0,0,0,0.06);resize:vertical}
+    .controls{display:flex;gap:8px;margin-top:8px}
+    .btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+    .btn.run{background:var(--accent);color:white}
+    .btn.reset{background:#fff;border:1px solid rgba(0,0,0,0.06)}
+    .preview{margin-top:8px;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);height:260px}
+    iframe.preview-iframe{width:100%;height:100%;border:0}
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="location.href='index.html'">←</button>
+    <h1>JavaScript Course — Topics & Examples</h1>
+  </header>
+
+  <main>
+    <p class="muted">Each example runs inside a sandboxed iframe for safety. Edit the code and press Run to see the result.</p>
+
+    <!-- Basics -->
+    <section class="topic" id="basics-js">
+      <h2>Basics: Variables, Types, Operators</h2>
+      <p class="muted">let/const/var, primitives (string, number, boolean, null, undefined, symbol, bigint), typeof, arithmetic & logical operators.</p>
+
+      <div class="example">
+        <textarea class="code" id="js_code_1">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;script&gt;
+const name = "Ada";
+let age = 30;
+const isStudent = false;
+console.log(typeof name, typeof age, typeof isStudent);
+document.write('&lt;p&gt;Name: '+name+'&lt;/p&gt;');
+document.write('&lt;p&gt;Age: '+age+'&lt;/p&gt;');
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+        <div class="controls">
+          <button class="btn run" data-target="js_code_1">Run</button>
+          <button class="btn reset" data-target="js_code_1" data-reset>Reset</button>
+        </div>
+        <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts"></iframe></div>
+      </div>
+    </section>
+
+    <!-- Functions -->
+    <section class="topic" id="functions-js">
+      <h2>Functions & Scope</h2>
+      <p class="muted">Function declarations, expressions, arrow functions, block scope (let/const) vs function scope (var), closures.</p>
+
+      <div class="example">
+        <textarea class="code" id="js_code_2">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;script&gt;
+function greet(name){ return 'Hello '+name; }
+const arrow = (n)=> 'Hi '+n;
+document.write('&lt;p&gt;'+greet('Ada')+'&lt;/p&gt;');
+document.write('&lt;p&gt;'+arrow('Tads')+'&lt;/p&gt;');
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+        <div class="controls">
+          <button class="btn run" data-target="js_code_2">Run</button>
+          <button class="btn reset" data-target="js_code_2" data-reset>Reset</button>
+        </div>
+        <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts"></iframe></div>
+      </div>
+
+      <p class="muted">Closure example (function keeps reference to variables):</p>
+      <div class="example">
+        <textarea class="code" id="js_code_closure">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;script&gt;
+function counter(){
+  let n = 0;
+  return ()=> ++n;
+}
+const c = counter();
+document.write('&lt;p&gt;'+c()+'&lt;/p&gt;');
+document.write('&lt;p&gt;'+c()+'&lt;/p&gt;');
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+      <div class="controls">
+        <button class="btn run" data-target="js_code_closure">Run</button>
+        <button class="btn reset" data-target="js_code_closure" data-reset>Reset</button>
+      </div>
+      <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts"></iframe></div>
+    </section>
+
+    <!-- Arrays & Objects -->
+    <section class="topic" id="arrays-js">
+      <h2>Arrays & Objects</h2>
+      <p class="muted">Array methods (map, filter, reduce, forEach), object literals, destructuring, spread operator.</p>
+
+      <div class="example">
+        <textarea class="code" id="js_code_3">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;script&gt;
+const arr = [1,2,3,4];
+const doubled = arr.map(n =&gt; n*2);
+document.write('&lt;p&gt;Doubled: '+doubled.join(', ')+'&lt;/p&gt;');
+
+const user = {name:'Ada', age:30};
+const {name, age} = user;
+document.write('&lt;p&gt;'+name+' — '+age+'&lt;/p&gt;');
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+        <div class="controls">
+          <button class="btn run" data-target="js_code_3">Run</button>
+          <button class="btn reset" data-target="js_code_3" data-reset>Reset</button>
+        </div>
+        <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts"></iframe></div>
+      </div>
+    </section>
+
+    <!-- DOM & Events -->
+    <section class="topic" id="dom-js">
+      <h2>DOM Manipulation & Events</h2>
+      <p class="muted">Select elements, change content/styles, add/remove elements, handle events, event delegation, and best practices.</p>
+
+      <div class="example">
+        <textarea class="code" id="js_code_4">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;
+&lt;div id="app"&gt;&lt;button id="add"&gt;Add item&lt;/button&gt;&lt;ul id="list"&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;script&gt;
+const add = document.getElementById('add');
+const list = document.getElementById('list');
+add.addEventListener('click', ()=>{
+  const li = document.createElement('li');
+  li.textContent = 'Item '+(list.children.length+1);
+  list.appendChild(li);
+});
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+        <div class="controls">
+          <button class="btn run" data-target="js_code_4">Run</button>
+          <button class="btn reset" data-target="js_code_4" data-reset>Reset</button>
+        </div>
+        <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts allow-same-origin"></iframe></div>
+      </div>
+    </section>
+
+    <!-- Fetch & Async -->
+    <section class="topic" id="async-js">
+      <h2>Async: Promises, fetch, async/await</h2>
+      <p class="muted">Use fetch for HTTP requests, handle promises with then/catch or async/await. Handle errors and timeouts.</p>
+
+      <div class="example">
+        <textarea class="code" id="js_code_5">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;script&gt;
+async function getUser(){
+  try{
+    const res = await fetch('https://api.github.com/users/octocat');
+    const data = await res.json();
+    document.body.innerHTML = '&lt;h3&gt;'+data.login+'&lt;/h3&gt;&lt;p&gt;ID: '+data.id+'&lt;/p&gt;';
+  }catch(e){
+    document.body.innerHTML = '&lt;p&gt;Error fetching&lt;/p&gt;';
+  }
+}
+getUser();
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+        <div class="controls">
+          <button class="btn run" data-target="js_code_5">Run</button>
+          <button class="btn reset" data-target="js_code_5" data-reset>Reset</button>
+        </div>
+        <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts allow-same-origin"></iframe></div>
+      </div>
+      <p class="muted">Note: sandbox setting allows same-origin fetch in many browsers. If blocked, open the file from a small local server (e.g., `npx serve`).</p>
+    </section>
+
+    <!-- Modules & Classes -->
+    <section class="topic" id="modules-js">
+      <h2>Modules & Classes</h2>
+      <p class="muted">ES Modules (import/export), classes, prototypes, and inheritance.</p>
+
+      <div class="example">
+        <textarea class="code" id="js_code_6">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;&lt;script type="module"&gt;
+class Person {
+  constructor(name){ this.name = name }
+  greet(){ return 'Hi '+this.name }
+}
+const p = new Person('Ada');
+document.body.innerHTML = '&lt;p&gt;'+p.greet()+'&lt;/p&gt;';
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+        <div class="controls">
+          <button class="btn run" data-target="js_code_6">Run</button>
+          <button class="btn reset" data-target="js_code_6" data-reset>Reset</button>
+        </div>
+        <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts allow-same-origin"></iframe></div>
+      </div>
+    </section>
+
+    <!-- Error handling & Debugging -->
+    <section class="topic" id="errors-js">
+      <h2>Error handling & Debugging</h2>
+      <p class="muted">Use try/catch for runtime errors, console.log, breakpoints in devtools, source maps for transpiled code, and test edge cases.</p>
+    </section>
+
+    <!-- Browser APIs -->
+    <section class="topic" id="apis-js">
+      <h2>Common Browser APIs</h2>
+      <p class="muted">localStorage/sessionStorage, history, fetch API, Geolocation, Clipboard, Notification, Service Workers (offline), and WebSockets.</p>
+
+      <div class="example">
+        <textarea class="code" id="js_code_storage">&lt;!doctype html&gt;&lt;html&gt;&lt;body&gt;
+&lt;input id="k" placeholder="key"&gt;&lt;input id="v" placeholder="value"&gt;
+&lt;button id="save"&gt;Save&lt;/button&gt;&lt;button id="show"&gt;Show&lt;/button&gt;
+&lt;script&gt;
+document.getElementById('save').addEventListener('click', ()=>{
+  const k=document.getElementById('k').value;
+  const v=document.getElementById('v').value;
+  localStorage.setItem(k,v);
+  alert('Saved');
+});
+document.getElementById('show').addEventListener('click', ()=>{
+  alert(localStorage.getItem(document.getElementById('k').value));
+});
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
+
+        <div class="controls">
+          <button class="btn run" data-target="js_code_storage">Run</button>
+          <button class="btn reset" data-target="js_code_storage" data-reset>Reset</button>
+        </div>
+        <div class="preview"><iframe class="preview-iframe" sandbox="allow-scripts allow-same-origin"></iframe></div>
+      </div>
+    </section>
+
+    <section class="topic" id="best-js">
+      <h2>Best Practices & Patterns</h2>
+      <p class="muted">Write small functions, keep state immutable where possible, use debouncing/throttling for heavy events, avoid memory leaks, use linting (ESLint), write tests, and prefer modern syntax (const/let, arrow functions, modules).</p>
+    </section>
+
+    <p class="muted">That completes the JavaScript core course outline.</p>
+  </main>
+
+  <script>
+    // same run/reset pattern
+    document.querySelectorAll('.btn.run').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.dataset.target;
+        const ta = document.getElementById(id);
+        const frame = btn.closest('.topic').querySelector('iframe.preview-iframe');
+        if(frame && ta) frame.srcdoc = ta.value;
+      });
+    });
+    document.querySelectorAll('button[data-reset]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const ta = document.getElementById(btn.dataset.target);
+        if(ta){
+          if(ta.dataset.original===undefined) ta.dataset.original = ta.value;
+          ta.value = ta.dataset.original;
+          btn.closest('.topic').querySelector('iframe.preview-iframe').srcdoc = ta.value;
+        }
+      });
+    });
+    document.querySelectorAll('textarea.code').forEach(ta=>{
+      const frame = ta.closest('.topic').querySelector('iframe.preview-iframe');
+      if(frame) frame.srcdoc = ta.value;
+      if(ta.dataset.original===undefined) ta.dataset.original = ta.value;
+    });
+  </script>
+</body>
+</html>
